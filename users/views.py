@@ -1,44 +1,48 @@
-from django.contrib.auth  import login, authenticate
+from django.contrib.auth  import login, authenticate, logout
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
 from django.http import HttpResponse
 
-# Custom decorators to handle user behaviour
-# Custom login required decorator
-def login_required(function):
-    def wrapper(request, *args, **kw):
-        user=request.user  
-        if not (user.id and request.session.get('code_success')):
-            return redirect('signup')
-        else:
-            return function(request, *args, **kw)
-    return wrapper
+from .forms import SignUpForm
+from .decorators import login_required, login_required_groupA, login_required_groupB, logout_required
 
 # View functions
 
+@logout_required
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
+            user.refresh_from_db()
             user.profile.group = form.cleaned_data.get('group')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('index')
+        else:
+            print("error")
     form = SignUpForm()
     return render(request, 'users/signup.html', {'form': form})
 
-@login_required
+@login_required_groupA
 def groupA(request):
-    return HttpResponse("groupA")
+    return render(request, 'users/groupA.html')
 
-@login_required
+@login_required_groupB
 def groupB(request):
-    return HttpResponse("groupB")
+    return render(request, 'users/groupB.html')
 
 @login_required
 def index(request):
-    return HttpResponse("index")
+    if request.user.profile.group=='A':
+        return redirect('groupA')
+    elif request.user.profile.group=='B':
+        return redirect('groupB')
+    else:
+        return HttpResponse("hello there!")
+
+@login_required
+def logoutUser(request):
+    logout(request)
+    return redirect('signup')
