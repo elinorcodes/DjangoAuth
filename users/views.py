@@ -38,7 +38,6 @@ def signin(request):
         print(form.is_valid())
         if form.is_valid():
             find_user = User.objects.get(username=request.POST['username'])
-            print(find_user.profile.group)
             user = authenticate(username=find_user.username, password=request.POST['password'])
             login(request, user)
             return redirect('index')
@@ -62,7 +61,7 @@ def index(request):
     elif request.user.profile.group=='B':
         return redirect('groupB')
     else:
-        return HttpResponse("hello there!")
+        return render(request, 'users/default.html')
 
 @login_required
 def logoutUser(request):
