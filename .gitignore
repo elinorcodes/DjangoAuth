@@ -1,12 +1,9 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.log
-*.pot
-*.pyc
 */*/*/*/__pycache__/
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -89,7 +86,6 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-virtualenv/
 .env
 .venv
 env/
@@ -105,5 +101,14 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+# mkdocs documentation
+/site
+
 # mypy
 .mypy_cache/
+.pyc
+*/.pyc
+*/*/.pyc
+*/*/*/.pyc
+*/*/*/*/.pyc
+.
