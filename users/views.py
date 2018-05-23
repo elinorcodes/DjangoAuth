@@ -1,6 +1,10 @@
+from django.contrib.auth  import login, authenticate
 from django.shortcuts import render, redirect
+from mysite.core.forms import SignUpForm
 from django.http import HttpResponse
 
+# Custom decorators to handle user behaviour
+# Custom login required decorator
 def login_required(function):
     def wrapper(request, *args, **kw):
         user=request.user  
@@ -10,9 +14,22 @@ def login_required(function):
             return function(request, *args, **kw)
     return wrapper
 
-# Create your views here.
+# View functions
+
 def signup(request):
-    return HttpResponse("hello")
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.group = form.cleaned_data.get('group')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
 
 @login_required
 def groupA(request):
