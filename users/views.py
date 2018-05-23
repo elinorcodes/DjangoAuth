@@ -1,6 +1,6 @@
 from django.contrib.auth  import login, authenticate
 from django.shortcuts import render, redirect
-from mysite.core.forms import SignUpForm
+from .forms import SignUpForm
 from django.http import HttpResponse
 
 # Custom decorators to handle user behaviour
@@ -29,7 +29,7 @@ def signup(request):
             login(request, user)
             return redirect('home')
     form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'users/signup.html', {'form': form})
 
 @login_required
 def groupA(request):
