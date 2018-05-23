@@ -8,7 +8,7 @@ def login_required(function):
         if (user.id):
             return function(request, *args, **kw) 
         else:
-            return redirect('signup')
+            return redirect('home')
     return wrapper
 
 #Custom logout_required decorator
@@ -28,7 +28,7 @@ def login_required_groupA(function):
         if (user.id and user.profile.group=='A'):
             return function(request, *args, **kw) 
         else:
-            return redirect('signup')
+            return redirect('home')
     return wrapper
 
 #Custom logout required decorator to access group B page
@@ -38,5 +38,5 @@ def login_required_groupB(function):
         if (user.id and user.profile.group=='B'):
             return function(request, *args, **kw) 
         else:
-            return redirect('signup')
+            return redirect('home')
     return wrapper
