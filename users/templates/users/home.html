@@ -14,10 +14,18 @@
     <div class="container">
         <div class="jumbotron">
             <center>
-            <a href="{% url 'users:signin' %}"><button type="button" class="btn btn-primary">Login</button></a>
+                <h1>Welcome to website!</h1>
+            </center><br><br><hr><br>
+            <center>
+            <a href="{% url 'users:signin' %}"><button type="button" class="btn btn-primary">Login</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'users:signup' %}"><button type="button" class="btn btn-success">Register</button></a>
             </center>
         </div>
     </div>
+    <center>
+        <ul>
+            <h6>To access /api route, you must be authenticated!</h2>
+        </ul>
+    </center>
 </body>
 </html>
