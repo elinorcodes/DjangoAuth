@@ -7,6 +7,8 @@ router.register('languages', views.LanguageView)
 router.register('company', views.CompanyView)
 router.register('employee', views.EmployeeView)
 
+app_name = 'api'
+
 urlpatterns = [
     path('', include(router.urls))
 ]
