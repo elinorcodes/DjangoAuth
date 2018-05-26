@@ -9,7 +9,6 @@
     <title>Signup</title>
     <!--bootstrap-->
     <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}">
-    <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
     <div class="container">
@@ -19,7 +18,7 @@
             </div>
         </div>
         <div class="container">
-            <form action="{% url 'signup' %}" method="post">
+            <form action="{% url 'users:signup' %}" method="post">
                 {% csrf_token %}
                 <div class="field">
                     <label for="username">Username : </label>
@@ -38,7 +37,7 @@
                     {{form.group}}
                 </div>
                 <button type="submit" class="btn btn-primary">Register!</button>
-                <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Back</button></a>
+                <a href="{% url 'users:home' %}"><button type="button" class="btn btn-primary">Back</button></a>
             </form>
         </div>
     </div>

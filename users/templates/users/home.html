@@ -9,14 +9,13 @@
     <!--bootstrap-->
     <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'users/css/generic.css' %}">
-    <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
             <center>
-            <a href="{% url 'signin' %}"><button type="button" class="btn btn-primary">Login</button></a>
-            <a href="{% url 'signup' %}"><button type="button" class="btn btn-success">Register</button></a>
+            <a href="{% url 'users:signin' %}"><button type="button" class="btn btn-primary">Login</button></a>
+            <a href="{% url 'users:signup' %}"><button type="button" class="btn btn-success">Register</button></a>
             </center>
         </div>
     </div>

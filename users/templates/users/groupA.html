@@ -11,13 +11,12 @@
     <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'users/css/generic.css' %}">
     <link rel="stylesheet" href="{% static 'users/css/groupA.css' %}">
-    <script src="{% static 'users/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
             <center><h2>Group A</h2></center>
-            <center><a href="{% url 'logoutUser' %}"><button class="btn btn-danger">Logout</button></a></center>
+            <center><a href="{% url 'users:logoutUser' %}"><button class="btn btn-danger">Logout</button></a></center>
         </div>
     </div>
 </body>

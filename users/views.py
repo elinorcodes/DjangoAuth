@@ -25,7 +25,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('index')
+            return redirect('users:index')
         else:
             print("error")
     form = SignUpForm()
@@ -40,7 +40,7 @@ def signin(request):
             find_user = User.objects.get(username=request.POST['username'])
             user = authenticate(username=find_user.username, password=request.POST['password'])
             login(request, user)
-            return redirect('index')
+            return redirect('users:index')
         else:
             print("error")
     form = SignInForm()
@@ -57,13 +57,13 @@ def groupB(request):
 @login_required
 def index(request):
     if request.user.profile.group=='A':
-        return redirect('groupA')
+        return redirect('users:groupA')
     elif request.user.profile.group=='B':
-        return redirect('groupB')
+        return redirect('users:groupB')
     else:
         return render(request, 'users/default.html')
 
 @login_required
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('users:home')
