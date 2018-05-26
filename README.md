@@ -18,4 +18,7 @@ $ (env) python manage.py runserver
 ```
 <h4><strong>NOTE: </strong>Python version should be 3.x.x </h4>
 
+### Hosting
+This app is hosted on https://tranquil-crag-87522.herokuapp.com/
+
 #### ~@Neverwannafly
