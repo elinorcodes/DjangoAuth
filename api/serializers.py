@@ -9,7 +9,7 @@ class LanguageSerializer(serializers.HyperlinkedModelSerializer):
 class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Company
-        fields = ('id','url', 'name')
+        fields = ('id', 'url', 'name')
 
 class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
