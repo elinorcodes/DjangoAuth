@@ -8,14 +8,14 @@ from .permissions import UserGroupPermissions
 class LanguageView(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
-    permission_classes = (UserGroupPermissions, permissions.IsAuthenticated)
+    permission_classes = (UserGroupPermissions,)
 
 class CompanyView(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes = (UserGroupPermissions, permissions.IsAuthenticated)
+    permission_classes = (UserGroupPermissions,)
 
 class EmployeeView(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    permission_classes = (UserGroupPermissions, permissions.IsAuthenticated)
+    permission_classes = (UserGroupPermissions,)
