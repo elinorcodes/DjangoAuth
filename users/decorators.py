@@ -25,7 +25,7 @@ def logout_required(function):
 def login_required_groupA(function):
     def wrapper(request, *args, **kw):
         user=request.user  
-        if (user.id and user.profile.group=='A'):
+        if (user.id and (user.profile.group=='A' or user.is_staff==True)):
             return function(request, *args, **kw) 
         else:
             return redirect('users:index')
