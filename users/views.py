@@ -56,12 +56,9 @@ def groupB(request):
 
 @login_required
 def index(request):
-    if request.user.profile.group=='A':
+    if request.user.profile.group=='A' or request.user.is_staff==True:
         return redirect('users:groupA')
-    elif request.user.profile.group=='B':
-        return redirect('users:groupB')
-    else:
-        return render(request, 'users/default.html')
+    return redirect('users:groupB')
 
 @login_required
 def logoutUser(request):
