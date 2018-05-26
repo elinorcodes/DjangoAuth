@@ -112,3 +112,6 @@ venv.bak/
 */*/*/.pyc
 */*/*/*/.pyc
 .
+newproject/__pycache__/urls.cpython-36.pyc
+newproject/__pycache__/settings.cpython-36.pyc
+newproject/__pycache__/urls.cpython-36.pyc
