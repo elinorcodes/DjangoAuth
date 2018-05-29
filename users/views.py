@@ -1,8 +1,9 @@
+import json
+
 from django.contrib.auth  import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-
+from django.http import HttpResponse, JsonResponse
 from .forms import SignUpForm, SignInForm
 from .decorators import login_required, login_required_groupA, login_required_groupB, logout_required
 
@@ -14,8 +15,11 @@ def home(request):
 
 @logout_required
 def signup(request):
-    if request.method == 'POST':
+    if request.method =='POST':
         form = SignUpForm(request.POST)
+        # print(form)
+        print(request.POST)
+        print(form.is_valid())
         if form.is_valid():
             user = form.save()
             print(user)
