@@ -9,6 +9,8 @@
     <title>Signup</title>
     <!--bootstrap-->
     <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}">
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -27,28 +29,34 @@
             </center>
         </div>
         <div class="container">
-            <form action="{% url 'users:signup' %}" method="post">
+            <div class="messgae"></div>
+            <form action="{% url 'users:signup' %}" method="POST">
                 {% csrf_token %}
-                <div class="field">
-                    <label for="username">Username : </label>
-                    {{form.username}}
-                </div>
-                <div class="field">
-                    <label for="password1">Enter Password : </label>
-                    {{form.password1}}
-                </div>
-                <div class="field">
-                    <label for="password2">Confirm Password : </label>
-                    {{form.password2}}
-                </div>
-                <div class="field">
-                    <label for="group">Chose your group : </label>
-                    {{form.group}}
-                </div>
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Register!</button>
                 <a href="{% url 'users:home' %}"><button type="button" class="btn btn-primary">Back</button></a>
             </form>
         </div>
     </div>
 </body>
+<!-- <script>
+    $(document).ready(function() {
+        $('form').on("submit", function(event){
+            event.preventDefault();
+            var signup_url = "{% url 'users:signup' %}";
+            $.ajax({
+                url : signup_url,
+                method: 'POST',
+                data: $(this).serialize(),
+                datatype: 'json',
+                success: function(data) {
+                    $(".message")
+                },
+                error: function(data) {
+                    
+                }
+            });
+        });
+    });
+</script> -->
 </html>
